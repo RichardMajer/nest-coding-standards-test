@@ -1,22 +1,23 @@
 {
   "name": "nest-coding-standards-test",
   "version": "1.0.0",
-  "description": "NestJS projekt s coding standards validátorom",
+  "description": "Demo projekt pre NestJS Coding Guidelines Validator",
   "main": "index.js",
   "scripts": {
-    "guidelines": "node scripts/validate-guidelines.js",
-    "guidelines:all": "node scripts/validate-guidelines.js --all",
-    "guidelines:verbose": "node scripts/validate-guidelines.js --verbose",
-    "guidelines:help": "node scripts/validate-guidelines.js --help"
+    "guidelines": "node guidelines/scripts/validate-guidelines.js",
+    "guidelines:all": "node guidelines/scripts/validate-guidelines.js --all",
+    "guidelines:verbose": "node guidelines/scripts/validate-guidelines.js --verbose",
+    "guidelines:help": "node guidelines/scripts/validate-guidelines.js --help"
   },
   "keywords": [
     "nestjs",
     "coding-standards",
     "validation",
-    "typescript"
+    "typescript",
+    "demo"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@typescript-eslint/parser": "^6.0.0",

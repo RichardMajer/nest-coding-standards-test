@@ -1,30 +1,24 @@
 # NestJS Coding Guidelines Validator
 
-Nástroj na kontrolu coding guidelines pre NestJS projekty. Kontroluje len **zmenené súbory**, nie celý kód, takže môžeš postupne aplikovať pravidlá na nový kód.
+Demo projekt obsahujúci **kompletný guidelines validator** v priečinku `/guidelines`.
 
-## 🚀 Použitie
+## 📦 Hlavný produkt: `/guidelines` priečinok
+
+Celý validátor je zabalený v **`/guidelines`** priečinku, ktorý môžeš **skopírovať do akéhokoľvek NestJS projektu**.
+
+## 🚀 Rýchle použitie
 
 ```bash
-# Nainštaluj dependencies
+# Testovanie v tomto demo projekte
 npm install
-
-# Kontrola len zmenených súborov (odporúčané)
-npm run guidelines
-
-# Kontrola všetkých súborov v projekte
-npm run guidelines:all
-
-# Detailné informácie o chybách
 npm run guidelines:verbose
 
-# Nápoveda
-npm run guidelines:help
-
-# Kontrola špecifických súborov
-node scripts/validate-guidelines.js src/users/user.controller.ts
-
-# Kontrola zmien oproti konkrétnemu branch
-node scripts/validate-guidelines.js --branch main
+# Inštalácia do tvojho NestJS projektu
+cp -r guidelines/ /path/to/your/nestjs-project/
+cd /path/to/your/nestjs-project/
+node guidelines/install.js
+npm install
+npm run guidelines
 ```
 
 ## 📋 Aktuálne pravidlá
@@ -57,14 +51,19 @@ node scripts/validate-guidelines.js --branch main
 ## 📁 Štruktúra
 
 ```
-scripts/
-├── validate-guidelines.js    # Hlavný script
-├── rules/
-│   ├── file-naming.js      # Kontrola názvov súborov
-│   ├── interface-naming.js # Kontrola interface names
-│   └── controller-rules.js # Kontrola controller DTO returns
-└── utils/
-    └── git-helpers.js      # Git integrácia
+guidelines/
+├── README.md                    # Kompletná dokumentácia
+├── INSTALL.md                   # Inštalačné inštrukcie  
+├── package.json                 # Dependencies a scripts
+├── install.js                   # Automatický installer
+└── scripts/
+    ├── validate-guidelines.js   # Hlavný validátor
+    ├── rules/
+    │   ├── file-naming.js      # Kontrola názvov súborov
+    │   ├── interface-naming.js # Kontrola interface names
+    │   └── controller-rules.js # Kontrola controller DTO returns
+    └── utils/
+        └── git-helpers.js      # Git integrácia
 ```
 
 ## 🔧 Rozšírenie pravidiel

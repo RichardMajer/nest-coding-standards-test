@@ -10,7 +10,7 @@ export interface UserDto {  // Zlý príklad - interface by mal začínať "I"
 @Controller('bad')
 export class BadController {
   @Get()
-  findAll() {  // Zlý príklad - chýba return type
+  findAll()  {  // Zlý príklad - chýba return type
     return [];
   }
 
