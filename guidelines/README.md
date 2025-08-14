@@ -4,20 +4,44 @@ Nástroj na kontrolu coding guidelines pre NestJS projekty s **klikateľnými od
 
 ## 🚀 Inštalácia do existujúceho NestJS projektu
 
-### 1. Skopíruj guidelines priečinok
+### Automatická inštalácia (odporúčaná)
+
 ```bash
-# Skopíruj celý guidelines priečinok do root tvojho NestJS projektu
-cp -r guidelines/ /path/to/your/nestjs/project/
+# 1. Skopíruj guidelines priečinok do root tvojho NestJS projektu
+cp -r guidelines/ /path/to/your/nestjs-project/
+
+# 2. Spusti automatický installer (musíš byť v root tvojho NestJS projektu)
+cd /path/to/your/nestjs-project/
+node guidelines/install.js
+
+# 3. Nainštaluj dependencies
+npm install
+
+# 4. Spusti guidelines
+npm run guidelines
 ```
 
-### 2. Nainštaluj dependencies
+**Installer automaticky:**
+- ✅ Pridá scripts do tvojho `package.json`
+- ✅ Pridá potrebné `devDependencies` 
+- ✅ Zobrazí ďalšie kroky
+
+### Manuálna inštalácia
+
+Ak nechceš použiť installer:
+
+#### 1. Skopíruj guidelines priečinok
 ```bash
-# V tvojom NestJS projekte
-cd /path/to/your/nestjs/project/
+cp -r guidelines/ /path/to/your/nestjs-project/
+```
+
+#### 2. Nainštaluj dependencies
+```bash
+cd /path/to/your/nestjs-project/
 npm install --save-dev @typescript-eslint/parser@^6.0.0 typescript@^5.0.0
 ```
 
-### 3. Pridaj scripts do package.json
+#### 3. Pridaj scripts do package.json
 ```json
 {
   "scripts": {
@@ -29,14 +53,22 @@ npm install --save-dev @typescript-eslint/parser@^6.0.0 typescript@^5.0.0
 }
 ```
 
-### 4. (Voliteľné) Pridaj do git hooks
+### Git Hooks (voliteľné)
+
+Pre automatickú kontrolu pri každom commite:
+
 ```json
-// package.json
 {
   "scripts": {
     "precommit": "npm run guidelines"
   }
 }
+```
+
+Alebo použiť husky:
+```bash
+npm install --save-dev husky
+npx husky add .husky/pre-commit "npm run guidelines"
 ```
 
 ## 📋 Použitie
@@ -102,17 +134,25 @@ node guidelines/scripts/validate-guidelines.js --branch main
 
 ```
 guidelines/
-├── package.json             # Dependencies a scripts
-├── README.md               # Táto dokumentácia  
+├── README.md                    # Kompletná dokumentácia (tento súbor)
+├── INSTALL.md                   # Podrobné inštalačné inštrukcie
+├── package.json                 # Dependencies a npm scripts
+├── install.js                   # 🚀 Automatický installer script
+├── .gitignore                   # Git ignore pravidlá
 └── scripts/
-    ├── validate-guidelines.js    # Hlavný script
-    ├── rules/
-    │   ├── file-naming.js       # Kontrola názvov súborov
-    │   ├── interface-naming.js  # Kontrola interface names
-    │   └── controller-rules.js  # Kontrola controller DTO returns
+    ├── validate-guidelines.js   # Hlavný validátor s klikateľnými odkazmi
+    ├── rules/                   # Pravidlá validácie
+    │   ├── file-naming.js      # Kontrola názvov súborov (veľké písmeno)
+    │   ├── interface-naming.js # Kontrola interface names (prefix "I")
+    │   └── controller-rules.js # Kontrola controller DTO returns
     └── utils/
-        └── git-helpers.js       # Git integrácia
+        └── git-helpers.js      # Git integrácia (zmenené súbory)
 ```
+
+**Hlavné súbory:**
+- **`install.js`** - automatický installer pre NestJS projekty
+- **`validate-guidelines.js`** - hlavný validátor s hyperlinks podporou
+- **`README.md`** - kompletná dokumentácia s príkladmi použitia
 
 ## 🔧 Rozšírenie pravidiel
 
